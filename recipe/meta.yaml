@@ -1,5 +1,5 @@
 {% set name = "rmm" %}
-{% set version = "21.12.00" %}
+{% set version = "22.02.00" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/rapidsai/rmm/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 71802422a04f2e0a828f7b7ec77e5cd1d24361d6dc5bf60a534659e4c2e08a44
+  sha256: 90ed8e21e3e82b9d55fe2f45afd836489c2d07b842d4cf9eadf5ff07849ff768
   folder: rmm
   patches:
     - py_ver.diff
