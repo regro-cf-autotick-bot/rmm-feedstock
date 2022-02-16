@@ -9,24 +9,24 @@ source:
   url: https://github.com/rapidsai/rmm/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 71802422a04f2e0a828f7b7ec77e5cd1d24361d6dc5bf60a534659e4c2e08a44
   folder: rmm
+  patches:
+    - py_ver.diff
 
 build:
   number: 0
-  skip: true  # [(not linux) or (cuda_compiler_version !=  "11.2") or (aarch64) or (py < 37) or (py >= 39)]
-
+  skip: true  # [(not linux) or (cuda_compiler_version !=  "11.2")]
   script_env:
     - INSTALL_PREFIX=${PREFIX}
-    - CUDA_HOME  # [ppc64le]
-
+    - CUDA_HOME  # [ppc64le or aarch64]
   script:
     - cd rmm/python
     - {{ PYTHON }} -m pip install . --no-deps -vv
-
   missing_dso_whitelist:
     - '*/libcuda.*'  # [linux]
   ignore_run_exports:
     - spdlog
     - librmm
+
 requirements:
   build:
     - {{ compiler('c') }}

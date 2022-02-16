@@ -1,0 +1,9 @@
+diff --git a/python/setup.cfg b/python/setup.cfg
+index 8722e91..1df2c9e 100644
+--- a/python/setup.cfg
++++ b/python/setup.cfg
+@@ -54,4 +54,3 @@ packages = find:
+ install_requires =
+     numpy
+     numba>=0.49
+-python_requires = >=3.7,<3.9
