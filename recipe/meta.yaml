@@ -24,6 +24,7 @@ build:
   missing_dso_whitelist:
     - '*/libcuda.*'  # [linux]
   ignore_run_exports:
+    - thrust
     - spdlog
     - librmm
 
@@ -40,6 +41,7 @@ requirements:
     - cython >=0.29,<0.30
     - spdlog >=1.8.5,<2
     - cuda-python 11.6
+    - thust
   run:
     - python
     - numba >=0.49
