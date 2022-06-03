@@ -18,7 +18,7 @@ build:
   script:
     - cd rmm/python
     - {{ PYTHON }} setup.py build_ext -- -DFIND_RMM_CPP=ON ${CMAKE_ARGS}
-    - {{ PYTHON }} -m pip install . --no-deps -vv ${CMAKE_ARGS}
+    - {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - '*/libcuda.*'  # [linux]
   ignore_run_exports:
@@ -38,8 +38,6 @@ requirements:
     - cython >=0.29,<0.30
     - spdlog >=1.8.5,<2
     - cuda-python 11.6
-    - thrust 1.15.*
-    - cub 1.15.*
     - scikit-build >=0.13.1
   run:
     - python
