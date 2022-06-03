@@ -38,6 +38,7 @@ requirements:
     - cython >=0.29,<0.30
     - spdlog >=1.8.5,<2
     - cuda-python 11.6
+    - cub 1.15.*
     - scikit-build >=0.13.1
   run:
     - python
