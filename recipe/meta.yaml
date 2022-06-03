@@ -12,10 +12,9 @@ source:
 
 build:
   number: 0
-  skip: true  # [(not linux) or (cuda_compiler_version !=  "11.2")]
+  skip: true  # [(not linux) or (cuda_compiler_version !=  "11.2") or py<38]
   script_env:
     - INSTALL_PREFIX=${PREFIX}
-    - CUDA_HOME  # [ppc64le or aarch64]
   script:
     - cd rmm/python
     - {{ PYTHON }} -m pip install . --no-deps -vv
@@ -38,8 +37,6 @@ requirements:
     - cython >=0.29,<0.30
     - spdlog >=1.8.5,<2
     - cuda-python 11.6
-    - thrust 1.15.*
-    - cub 1.15.*
     - scikit-build >=0.13.1
   run:
     - python
