@@ -9,8 +9,6 @@ source:
   url: https://github.com/rapidsai/rmm/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 2989ecac7d29f1104f3bd8bf328f3345398faaf2164eea86a755ff204e4214fb
   folder: rmm
-  patches:
-    - py_ver.diff
 
 build:
   number: 0
