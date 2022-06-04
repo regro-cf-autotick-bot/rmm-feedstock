@@ -15,10 +15,9 @@ build:
   skip: true  # [(not linux) or (cuda_compiler_version !=  "11.2") or py<38]
   script_env:
     - INSTALL_PREFIX=${PREFIX}
-    - SKBUILD_CONFIGURE_OPTIONS="-DFIND_RMM_CPP=ON -DThrust_ROOT=$PREFIX/include/rapids/thrust/"
   script:
     - cd rmm/python
-    - {{ PYTHON }} -m pip install . --no-deps -vv
+    - SKBUILD_CONFIGURE_OPTIONS="-DFIND_RMM_CPP=ON -DThrust_ROOT=${PREFIX}/include/rapids/thrust/" {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - '*/libcuda.*'  # [linux]
   ignore_run_exports:
