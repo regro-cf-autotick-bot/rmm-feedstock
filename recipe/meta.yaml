@@ -1,5 +1,5 @@
 {% set name = "rmm" %}
-{% set version = "22.02.00" %}
+{% set version = "22.04.01" %}
 
 package:
   name: {{ name|lower }}
@@ -7,20 +7,17 @@ package:
 
 source:
   url: https://github.com/rapidsai/rmm/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 90ed8e21e3e82b9d55fe2f45afd836489c2d07b842d4cf9eadf5ff07849ff768
+  sha256: 2989ecac7d29f1104f3bd8bf328f3345398faaf2164eea86a755ff204e4214fb
   folder: rmm
-  patches:
-    - py_ver.diff
 
 build:
-  number: 1
-  skip: true  # [(not linux) or (cuda_compiler_version !=  "11.2")]
+  number: 0
+  skip: true  # [(not linux) or (cuda_compiler_version !=  "11.2") or py<38]
   script_env:
     - INSTALL_PREFIX=${PREFIX}
-    - CUDA_HOME  # [ppc64le or aarch64]
   script:
     - cd rmm/python
-    - {{ PYTHON }} -m pip install . --no-deps -vv
+    - SKBUILD_CONFIGURE_OPTIONS="-DFIND_RMM_CPP=ON -DThrust_ROOT=${PREFIX}/include/rapids/thrust/" {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - '*/libcuda.*'  # [linux]
   ignore_run_exports:
@@ -36,12 +33,10 @@ requirements:
     - librmm ={{ version }}
     - python
     - pip
-    - setuptools
     - cython >=0.29,<0.30
     - spdlog >=1.8.5,<2
     - cuda-python 11.6
-    - thrust 1.15.*
-    - cub 1.15.*
+    - scikit-build >=0.13.1
   run:
     - python
     - numba >=0.49
