@@ -17,8 +17,8 @@ build:
     - INSTALL_PREFIX=${PREFIX}
   script:
     - cd rmm/python
-    - {{ PYTHON }} setup.py build_ext -- -DCMAKE_PREFIX_PATH=${PREFIX} -DFIND_RMM_CPP=ON -DThrust_ROOT=$PREFIX/include/rapids/thrust/ ${CMAKE_ARGS}
-    #- {{ PYTHON }} -m pip install . --no-deps -vv
+    - {{ PYTHON }} setup.py build_ext -- -DFIND_RMM_CPP=ON -DThrust_ROOT=$PREFIX/include/rapids/thrust/
+    - {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - '*/libcuda.*'  # [linux]
   ignore_run_exports:
