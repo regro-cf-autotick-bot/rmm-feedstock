@@ -35,13 +35,13 @@ requirements:
     - pip
     - cython >=0.29,<0.30
     - spdlog >=1.8.5,<2
-    - cuda-python 11.6
+    - cuda-python >=11.5,<12
     - scikit-build >=0.13.1
   run:
     - python
     - numba >=0.49
-    - numpy
-    - {{ pin_compatible('cuda-python', min_pin='x.x', max_pin='x.x') }}
+    - numpy >=1.19
+    - {{ pin_compatible('cuda-python', min_pin='x.x', max_pin='x') }}
 
 test:
   imports:
