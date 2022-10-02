@@ -11,7 +11,7 @@ source:
   folder: rmm
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(not linux) or (cuda_compiler_version !=  "11.2") or py<38]
   script_env:
     - INSTALL_PREFIX=${PREFIX}
@@ -35,13 +35,13 @@ requirements:
     - pip
     - cython >=0.29,<0.30
     - spdlog >=1.8.5,<2
-    - cuda-python >=11.5,<12
+    - cuda-python >=11.5,<11.7.1  # 11.7.1 has ABI break
     - scikit-build >=0.13.1
   run:
     - python
     - numba >=0.49
     - numpy >=1.19
-    - {{ pin_compatible('cuda-python', min_pin='x.x', max_pin='x') }}
+    - cuda-python >=11.0,<11.7.1  # 11.7.1 has ABI break
 
 test:
   imports:
