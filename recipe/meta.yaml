@@ -1,5 +1,5 @@
 {% set name = "rmm" %}
-{% set version = "22.08.00" %}
+{% set version = "23.04.01" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/rapidsai/rmm/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 8588c6b5633b2fbdd834abbba0d1ea491e26d4f183b90c907615c0a38c2f9dc1
+  sha256: 39dead2f0c7bc0788dce1231b6dc2381275e260cbbefdaa8a3ea3a62f8ebad42
   folder: rmm
 
 build:
-  number: 1
+  number: 0
   skip: true  # [(not linux) or (cuda_compiler_version !=  "11.2") or py<38]
   script_env:
     - INSTALL_PREFIX=${PREFIX}
